@@ -1,4 +1,4 @@
-ecimport os
+import os
 from selenium import webdriver
 
 chromedriver = "~/Documents/chromedriver/wires"
