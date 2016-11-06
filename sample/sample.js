@@ -50,7 +50,7 @@ function getInput() {
     return document.getElementById('inputBox').value;
 }
 
-function checkAnwser(userInput) {
+Function checkAnwser(userInput) {
     var label = document.getElementById('passLabel');
     label.style.display = "block";
     if (userInput == anwser)
