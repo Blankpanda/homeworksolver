@@ -21,9 +21,7 @@ function getRandomOperand() {
 
 function generateSimpleOperation(operation) {
     var simpleOperation = {};
-
-
-
+    
     var operand  = getRandomOperand();
     
     //generate nice numbers 
@@ -50,7 +48,7 @@ function getInput() {
     return document.getElementById('inputBox').value;
 }
 
-Function checkAnwser(userInput) {
+function checkAnwser(userInput) {
     var label = document.getElementById('passLabel');
     label.style.display = "block";
     if (userInput == anwser)
