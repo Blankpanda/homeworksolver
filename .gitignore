@@ -1,2 +1,13 @@
 *.log
 venv3.4/*
+build/
+dist/
+*.egg-info/
+*.egg
+*.py[cod]
+__pycache__/
+*.so
+*~
+\#*#\
+.\#*sh
+*.*~
