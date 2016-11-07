@@ -1,13 +1,17 @@
 import csv
+import os
+
 
 class DataCsv(object):
     
     def __init__(self, csv_file, delimiter, quotechar):
+        if not os.path.exists(csv_file):
+            open(csv_file, 'w').close()
+        
         self.csv_file = csv_file
         self.delimiter = delimiter
         self.quotechar = quotechar
         self.classifiers = list()
-
 
     def open_csv_io(self, modif):
         if modif.startswith("r"):
@@ -36,6 +40,7 @@ class DataCsv(object):
     def write_new_row(self, row):
         csv_writer, file = self.open_csv_io("a")
         row_string = self.create_csv_row_string(row)
+        print(row_string)
         file.write(row_string)            
         file.close()
 
@@ -49,7 +54,8 @@ class DataCsv(object):
                 used.append(classifier)
                 self.classifiers.append(dict([(str(count),classifier)]))
                 count += 1
-
+        print(classifiers)
+        
     def add_new_classifier(self,classifier):                   
         number_class = len(self.classifiers) + 1
         self.classifier.append(dict([str(number_class),classifier]))                    
