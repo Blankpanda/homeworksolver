@@ -1,10 +1,11 @@
-var anwser;
+var answer;
 
 document.addEventListener("DOMContentLoaded", function() {
-    var operation = generateSimpleOperation();    
-    anwser = operation['anwser'];
+    document.getElementById('inputBox').value = "";
+    var operation = generateSimpleOperation();
+    answer = operation['anwser'];
     setPrompt(operation.operation); // lmao
-    
+    setAnswer(answer);
 });
 
 function getRandomNumber(min, max) {
@@ -12,6 +13,7 @@ function getRandomNumber(min, max) {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min)) + min;
 }
+
 
 function getRandomOperand() {
     var operands = ["*", "-", "+", "/"];
@@ -24,15 +26,10 @@ function generateSimpleOperation(operation) {
     
     var operand  = getRandomOperand();
     
-    //generate nice numbers 
-    if (operand == "/") {
-	// hack
-	firstTerm = 32;
-	lastTerm = 2;
-    } else {
-	var firstTerm = getRandomNumber(1,101);
-	var lastTerm = getRandomNumber(1,101);	
-    }
+
+    var firstTerm = getRandomNumber(1,101);
+    var lastTerm = getRandomNumber(1,101);	
+
  
     simpleOperation['operation'] = firstTerm + " " + operand + " " + lastTerm;
     simpleOperation['anwser'] = eval(simpleOperation['operation']);
@@ -44,14 +41,18 @@ function setPrompt(prompt) {
     document.getElementById('prompt').innerHTML = prompt;
 }
 
+function setAnswer() {
+    document.getElementById('answer-label').innerHTML = answer;
+}
+
 function getInput() {
     return document.getElementById('inputBox').value;
 }
 
-function checkAnwser(userInput) {
+function checkAnswer(userInput) {
     var label = document.getElementById('passLabel');
     label.style.display = "block";
-    if (userInput == anwser)
+    if (userInput == answer)
 	label.innerHTML = "Correct";
     else
 	label.innerHTML = "Wrong";

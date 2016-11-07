@@ -6,6 +6,7 @@ class DataCsv(object):
         self.csv_file = csv_file
         self.delimiter = delimiter
         self.quotechar = quotechar
+        self.classifiers = list()
 
 
     def open_csv_io(self, modif):
@@ -26,12 +27,9 @@ class DataCsv(object):
         l = list()
         for row in csv_reader:
             # we don't want any empty row entries
-            # refactor later
+            # TODO: we dont need to split anything if its already split, especially if were creating the csv
             if len(row) >= 1:
-                if len(row[0]) == 1:
-                    l.append(row[0].split(','))
-                else:
-                    l.append(row)                           
+                l.append(row[0].split(','))
         file.close()
         return l
     
@@ -42,8 +40,19 @@ class DataCsv(object):
         file.close()
 
     # assuming the last column are the classifiers
-    def label_classifiers(self):
+    def set_classifiers(self):
         classifiers = [row[-1] for row in self.get_rows()]
+        used = list()
+        count = 0
+        for classifier in classifiers:
+            if classifier not in used:
+                used.append(classifier)
+                self.classifiers.append(dict([(str(count),classifier)]))
+                count += 1
+
+    def add_new_classifier(self,classifier):                   
+        number_class = len(self.classifiers) + 1
+        self.classifier.append(dict([str(number_class),classifier]))                    
         
     # TODO: consider quotechar
     def create_csv_row_string(self,row):

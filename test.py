@@ -5,9 +5,8 @@ from selenium.webdriver.common.keys import Keys
 import data
 
 data = data.DataCsv("iris.csv",' ', '|')
-#data.write_new_row(['1','1','1','1'])
-#data.label_classifiers()
-print(data.get_rows())
+data.set_classifiers()
+#print(data.get_rows())
 
 # caps = DesiredCapabilities.FIREFOX
 
