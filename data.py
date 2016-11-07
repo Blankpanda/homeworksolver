@@ -23,12 +23,15 @@ class DataCsv(object):
             
     def get_rows(self):
         csv_reader, file = self.open_csv_io("r")
-        
         l = list()
         for row in csv_reader:
             # we don't want any empty row entries
+            # refactor later
             if len(row) >= 1:
-                l.append(row[0].split(','))
+                if len(row[0]) == 1:
+                    l.append(row[0].split(','))
+                else:
+                    l.append(row)                           
         file.close()
         return l
     
@@ -42,8 +45,6 @@ class DataCsv(object):
     def label_classifiers(self):
         classifiers = [row[-1] for row in self.get_rows()]
         
-
-
     # TODO: consider quotechar
     def create_csv_row_string(self,row):
         return self.delimiter.join(row).strip() + '\n'
