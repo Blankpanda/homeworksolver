@@ -28,7 +28,7 @@
 #     elem = driver.find_element_by_id('inputBox')
 #     elem.send_keys('16');
 
-#     elem = driver.find_element_by_id('inputButton')
+x #     elem = driver.find_element_by_id('inputButton')
 #     elem.click()
 #     driver.refresh()
 #https://github.com/SeleniumHQ/selenium/blob/master/py/selenium/webdriver/remote/webelement.py
@@ -41,7 +41,7 @@ def main():
     browser2 = browser.Browser('C:\\Users\\CalebsComp\\Documents\\homeworkSolver\\sample\\main.html',10)
     data2 = data.DataCsv("test.csv",' ','|')
     def f():
-        l = list()
+        l = list() 
         
         prompt = browser2.find_elem('prompt')
         l.append(prompt.text)
